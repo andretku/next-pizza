@@ -1,11 +1,16 @@
-import { cn } from "@/shared/lib/utils";
-import { User } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "../ui";
-import { Container } from "./container";
-import { SearchInput } from "./search-input";
-import { CartButton } from "./cart-button";
+'use client';
+
+import { cn } from '@/shared/lib/utils';
+import React from 'react';
+import { Container } from './container';
+import Image from 'next/image';
+import Link from 'next/link';
+import { SearchInput } from './search-input';
+import { CartButton } from './cart-button';
+import { useRouter, useSearchParams } from 'next/navigation';
+import toast from 'react-hot-toast';
+import { ProfileButton } from './profile-button';
+import { AuthModal } from './modals';
 
 interface Props {
   hasSearch?: boolean;
@@ -14,6 +19,31 @@ interface Props {
 }
 
 export const Header = ({ hasSearch = true, hasCart = true, className }: Props) => {
+  const router = useRouter();
+  const [openAuthModal, setOpenAuthModal] = React.useState(false);
+
+  const searchParams = useSearchParams();
+
+  React.useEffect(() => {
+    let toastMessage = '';
+
+    if (searchParams.has('paid')) {
+      toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.';
+    }
+
+    if (searchParams.has('verified')) {
+      toastMessage = 'Почта успешно подтверждена!';
+    }
+
+    if (toastMessage) {
+      setTimeout(() => {
+        router.replace('/');
+        toast.success(toastMessage, {
+          duration: 3000,
+        });
+      }, 1000);
+    }
+  }, []);
 
   return (
     <header className={cn("border-b border-gray-100", className)}>

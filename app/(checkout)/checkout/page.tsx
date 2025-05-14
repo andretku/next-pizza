@@ -13,7 +13,7 @@ import {
 } from "@/shared/components";
 import { CheckoutFormValues, checkoutFormSchema } from '@/shared/constants';
 import { useCart } from '@/shared/hooks';
-// import { createOrder } from '@/app/actions';
+import { createOrder } from '@/app/actions';
 import toast from 'react-hot-toast';
 import React from 'react';
 // import { useSession } from 'next-auth/react';
@@ -52,25 +52,25 @@ export default function CheckoutPage() {
   // }, [session]);
 
   const onSubmit = async (data: CheckoutFormValues) => {
-    // try {
-    //   setSubmitting(true);
+    try {
+      setSubmitting(true);
 
-    //   const url = await createOrder(data);
+      const url = await createOrder(data);
 
-    //   toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
-    //     icon: '✅',
-    //   });
+      toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
+        icon: '✅',
+      });
 
-    //   if (url) {
-    //     location.href = url;
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   setSubmitting(false);
-    //   toast.error('Не удалось создать заказ', {
-    //     icon: '❌',
-    //   });
-    // }
+      if (url) {
+        location.href = url;
+      }
+    } catch (err) {
+      console.log(err);
+      setSubmitting(false);
+      toast.error('Не удалось создать заказ', {
+        icon: '❌',
+      });
+    }
   };
 
   const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {

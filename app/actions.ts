@@ -1,10 +1,16 @@
 'use server';
 
+// * используется для передачи заказа (заполненная форма checkout) на бэк. Работает полностью на сервере
+// * серверные actions -- только для изменения данных на сервере (POST), они не возвращают response. Работают быстрее
+// * api -- это изменение данных на сервере, в том числе возвращение данных (GET), которые мы потом отрисовываем на странице
+
+// * у actions нет request. Чтобы вытащить куки, используется функция cookies()
+
 import { prisma } from '@/prisma/prisma-client';
-// import { PayOrderTemplate } from '@/shared/components';
-// import { VerificationUserTemplate } from '@/shared/components/shared/email-temapltes/verification-user';
+import { PayOrderTemplate } from '@/shared/components';
+// import { VerificationUserTemplate } from '@/shared/components';
 import { CheckoutFormValues } from '@/shared/constants';
-// import { createPayment, sendEmail } from '@/shared/lib';
+import { createPayment, sendEmail } from '@/shared/lib';
 // import { getUserSession } from '@/shared/lib/get-user-session';
 import { OrderStatus, Prisma } from '@prisma/client';
 // import { hashSync } from 'bcrypt';
@@ -80,38 +86,40 @@ export async function createOrder(data: CheckoutFormValues) {
       },
     });
 
-    // const paymentData = await createPayment({
-    //   amount: order.totalAmount,
-    //   orderId: order.id,
-    //   description: 'Оплата заказа #' + order.id,
-    // });
+    /* Создаем платеж */
+    const paymentData = await createPayment({
+      amount: order.totalAmount,
+      orderId: order.id,
+      description: 'Оплата заказа #' + order.id,
+    });
 
-    // if (!paymentData) {
-    //   throw new Error('Payment data not found');
-    // }
+    if (!paymentData) {
+      throw new Error('Payment data not found');
+    }
 
-    // await prisma.order.update({
-    //   where: {
-    //     id: order.id,
-    //   },
-    //   data: {
-    //     paymentId: paymentData.id,
-    //   },
-    // });
+    await prisma.order.update({
+      where: {
+        id: order.id,
+      },
+      data: {
+        paymentId: paymentData.id,
+      },
+    });
 
-    // const paymentUrl = paymentData.confirmation.confirmation_url;
+    const paymentUrl = paymentData.confirmation.confirmation_url;
 
-    // await sendEmail(
-    //   data.email,
-    //   'Next Pizza / Оплатите заказ #' + order.id,
-    //   PayOrderTemplate({
-    //     orderId: order.id,
-    //     totalAmount: order.totalAmount,
-    //     paymentUrl,
-    //   }),
-    // );
+    /* Отправляем письмо c просьбой оплатить заказ */
+    await sendEmail(
+      data.email,
+      'Next Pizza / Оплатите заказ #' + order.id,
+      PayOrderTemplate({
+        orderId: order.id,
+        totalAmount: order.totalAmount,
+        paymentUrl,
+      }),
+    );
 
-    // return paymentUrl;
+    return paymentUrl;
   } catch (err) {
     console.log('[CreateOrder] Server error', err);
   }

@@ -29,3 +29,4 @@ export * from "./address-input";
 export * from "./checkout";
 export * from "./form";
 export * from "./modals";
+export * from "./email-templates";
