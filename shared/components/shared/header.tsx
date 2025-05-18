@@ -21,7 +21,6 @@ interface Props {
 export const Header = ({ hasSearch = true, hasCart = true, className }: Props) => {
   const router = useRouter();
   const [openAuthModal, setOpenAuthModal] = React.useState(false);
-
   const searchParams = useSearchParams();
 
   React.useEffect(() => {
@@ -68,10 +67,8 @@ export const Header = ({ hasSearch = true, hasCart = true, className }: Props) =
 
         {/* Right side */}
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="flex items-center gap-1">
-            <User size={16} />
-            Войти
-          </Button>
+          <AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
+          <ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
           {hasCart && <CartButton />}
         </div>
       </Container>

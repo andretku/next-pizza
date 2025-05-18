@@ -24,7 +24,10 @@ export * from "./title";
 export * from "./top-bar";
 export * from "./white-block";
 export * from "./address-input";
-
+export * from "./providers";
+export * from "./profile-button";
+export * from "./profile-form";
+export * from "./info-block";
 
 export * from "./checkout";
 export * from "./form";

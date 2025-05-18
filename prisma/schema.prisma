@@ -20,7 +20,7 @@ model User {
   cart    Cart?
   role    UserRole   @default(USER)
   orders  Order[]
-  verified DateTime
+  verified DateTime?
   verificationCode VerificationCode?
   provider String?    // * какая соцсеть привязана к юзеру
   providerId String?
