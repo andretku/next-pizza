@@ -28,6 +28,7 @@ export * from "./providers";
 export * from "./profile-button";
 export * from "./profile-form";
 export * from "./info-block";
+export * from "./stories";
 
 export * from "./checkout";
 export * from "./form";

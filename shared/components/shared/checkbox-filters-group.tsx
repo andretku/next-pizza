@@ -35,7 +35,6 @@ export const CheckboxFiltersGroup = (props: CheckboxFiltersGroupProps) => {
 
   const [showAll, setShowAll] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  // const [selected, { add, toggle }] = useSet<string>(new Set([]));
 
   const list = showAll
     ? items.filter((item) => item.text.toLowerCase().includes(searchValue.toLowerCase()))
@@ -58,17 +57,6 @@ export const CheckboxFiltersGroup = (props: CheckboxFiltersGroupProps) => {
       </div>
     );
   }
-
-
-  // useEffect(() => {
-  //   if (defaultValue) {
-  //     defaultValue.forEach(add);
-  //   }
-  // }, [defaultValue?.length]);
-
-  // useEffect(() => {
-  //   onChange?.(Array.from(selected));
-  // }, [selected]);
 
   return (
     <div className={className}>

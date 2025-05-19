@@ -13,7 +13,11 @@ export async function GET(req: NextRequest) {
 
     const userCart = await prisma.cart.findFirst({
       where: {
-        userId: 1,
+        OR: [
+          {
+            token,
+          },
+        ],
       },
       include: {
         items: {
@@ -33,10 +37,11 @@ export async function GET(req: NextRequest) {
     });
 
     return NextResponse.json(userCart);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.log('[CART_GET] Server error', error);
+    return NextResponse.json({ message: 'Не удалось получить корзину' }, { status: 500 });
   }
-};
+}
 
 export async function POST(req: NextRequest) {
   try {

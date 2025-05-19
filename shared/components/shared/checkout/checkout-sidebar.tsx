@@ -9,14 +9,21 @@ const VAT = 15;
 const DELIVERY_PRICE = 250;
 
 interface Props {
+  delivery: boolean;
   totalAmount: number;
   loading?: boolean;
   className?: string;
 }
 
-export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, className }) => {
+export const CheckoutSidebar: React.FC<Props> = ({
+  delivery,
+  totalAmount,
+  loading,
+  className,
+}) => {
   const vatPrice = (totalAmount * VAT) / 100;
-  const totalPrice = totalAmount + DELIVERY_PRICE;
+  const deliveryPrice = delivery ? DELIVERY_PRICE : 0;
+  const totalPrice = totalAmount + deliveryPrice;
 
   return (
     <WhiteBlock className={cn("p-6 sticky top-4", className)}>
@@ -40,6 +47,7 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
           loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${totalAmount} ₽`
         }
       />
+
       <CheckoutItemDetails
         title={
           <div className="flex items-center">
@@ -50,7 +58,9 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
         value={
           loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${vatPrice} ₽`
         }
+        className="text-gray-400"
       />
+
       <CheckoutItemDetails
         title={
           <div className="flex items-center">
@@ -59,11 +69,7 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
           </div>
         }
         value={
-          loading ? (
-            <Skeleton className="h-6 w-16 rounded-[6px]" />
-          ) : (
-            `${DELIVERY_PRICE} ₽`
-          )
+          loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${deliveryPrice} ₽`
         }
       />
 

@@ -1,7 +1,8 @@
-import { create } from "zustand";
-import { Api } from "../services/api-client";
-import { CartStateItem, getCartDetails } from "../lib";
-import { CreateCartItemValues } from "../services/dto/cart.dto";
+import { create } from 'zustand';
+import { Api } from '../services/api-client';
+import { getCartDetails } from '../lib';
+import { CartStateItem } from '../lib/get-cart-details';
+import { CreateCartItemValues } from '../services/dto/cart.dto';
 
 export interface CartState {
   loading: boolean;
@@ -34,7 +35,7 @@ export const useCartStore = create<CartState>((set, get) => ({
       const data = await Api.cart.getCart();
       set(getCartDetails(data));
     } catch (error) {
-      console.error(error);
+      console.error("[GET CART ERROR]", error);
       set({ error: true });
     } finally {
       set({ loading: false });
@@ -59,9 +60,7 @@ export const useCartStore = create<CartState>((set, get) => ({
       set((state) => ({
         loading: true,
         error: false,
-        items: state.items.map((item) =>
-          item.id === id ? { ...item, disabled: true } : item,
-        ),
+        items: state.items.map((item) => (item.id === id ? { ...item, disabled: true } : item)),
       }));
       const data = await Api.cart.removeCartItem(id);
       set(getCartDetails(data));
