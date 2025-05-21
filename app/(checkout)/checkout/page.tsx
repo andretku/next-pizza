@@ -17,14 +17,14 @@ import { useCart } from "@/shared/hooks";
 import { createOrder } from "@/app/actions";
 import toast from "react-hot-toast";
 import React from "react";
-import { useSession } from "next-auth/react";
-import { Api } from "@/shared/services/api-client";
-import { Check, CheckSquare } from "lucide-react";
+// import { useSession } from "next-auth/react";
+// import { Api } from "@/shared/services/api-client";
+// import { Check, CheckSquare } from "lucide-react";
 
 export default function CheckoutPage () {
   const [submitting, setSubmitting] = React.useState(false);
   const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutFormSchema), // * функция валидации -> используем спец библиотеку

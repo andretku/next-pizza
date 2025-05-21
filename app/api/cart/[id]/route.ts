@@ -51,7 +51,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
 
     const cartItem = await prisma.cartItem.findFirst({
       where: {
-        id: Number(params.id),
+        id,
       },
     });
 
