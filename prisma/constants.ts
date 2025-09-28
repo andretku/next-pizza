@@ -20,92 +20,87 @@ export const _ingredients = [
   {
     name: 'Сырный бортик',
     price: 179,
-    imageUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/99f5cb91225b4875bd06a26d2e842106.png',
+    imageUrl: '/assets/images/ingredients/cheezerim',
   },
   {
     name: 'Сливочная моцарелла',
     price: 79,
-    imageUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/cdea869ef287426386ed634e6099a5ba.png',
+    imageUrl: '/assets/images/ingredients/mozzarella',
   },
   {
     name: 'Сыры чеддер и пармезан',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA69C1FE796',
+    imageUrl: '/assets/images/ingredients/cheeze',
   },
   {
     name: 'Острый перец халапеньо',
     price: 59,
-    imageUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/11ee95b6bfdf98fb88a113db92d7b3df.png',
+    imageUrl: '/assets/images/ingredients/pepper',
   },
   {
     name: 'Нежный цыпленок',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA5B328D35A',
+    imageUrl: '/assets/images/ingredients/chicken',
   },
   {
     name: 'Шампиньоны',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA67259A324',
+    imageUrl: '/assets/images/ingredients/mushrooms',
   },
   {
     name: 'Ветчина',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA61B9A8D61',
+    imageUrl: '/assets/images/ingredients/ham',
   },
   {
     name: 'Пикантная пепперони',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA6258199C3',
+    imageUrl: '/assets/images/ingredients/pepperoni',
   },
   {
     name: 'Острая чоризо',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA62D5D6027',
+    imageUrl: '/assets/images/ingredients/chorizo',
   },
   {
     name: 'Маринованные огурчики',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9EA89958D782B',
+    imageUrl: '/assets/images/ingredients/cucumber',
   },
   {
     name: 'Свежие томаты',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA7AC1A1D67',
+    imageUrl: '/assets/images/ingredients/tomato',
   },
   {
     name: 'Красный лук',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA60AE6464C',
+    imageUrl: '/assets/images/ingredients/onion',
   },
   {
     name: 'Сочные ананасы',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0',
+    imageUrl: '/assets/images/ingredients/ananas',
   },
   {
     name: 'Итальянские травы',
     price: 39,
-    imageUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/370dac9ed21e4bffaf9bc2618d258734.png',
+    imageUrl: '/assets/images/ingredients/herbs',
   },
   {
     name: 'Сладкий перец',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA63F774C1B',
+    imageUrl: '/assets/images/ingredients/paprika',
   },
   {
     name: 'Кубики брынзы',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA6B0FFC349',
+    imageUrl: '/assets/images/ingredients/brinza',
   },
   {
     name: 'Митболы',
     price: 79,
-    imageUrl:
-      'https://cdn.dodostatic.net/static/Img/Ingredients/b2f3a5d5afe44516a93cfc0d2ee60088.png',
+    imageUrl: '/assets/images/ingredients/meetballs',
   },
 ].map((obj, index) => ({ id: index + 1, ...obj }));
 
